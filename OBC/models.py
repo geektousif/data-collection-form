@@ -16,18 +16,20 @@ class Student(models.Model):
         ('VII', 'VII'),
         ('VIII', 'VIII'),
         ('IX', 'IX'),
+        ('X', 'X')
     ]
+    
     SECTION_CHOICES = [
         ('A', 'A'),
         ('B', 'B')
     ]
-
+    
     name = models.CharField(max_length=60)
     fathers_name = models.CharField(max_length=60)
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default='Select Gender')
     date_of_birth = models.DateField()
     last_class_passed = models.CharField(max_length=4, choices=CLASS_CHOICES)
-    year_of_passing = models.IntegerField(_('year'), max_length=4, choices=year_dropdown, default=datetime.datetime.now().year-1)
+    year_of_passing = models.IntegerField(('year'), choices=year_dropdown, default=datetime.datetime.now().year-1)
     current_class = models.CharField(max_length=4, choices=CLASS_CHOICES)
     section = models.CharField(max_length=4, choices=SECTION_CHOICES)
     roll = models.PositiveSmallIntegerField()
@@ -43,3 +45,4 @@ class Student(models.Model):
     branch_name = models.CharField(max_length=25)
     ifsc_code = models.CharField(max_length=20)
     account_no = models.CharField(max_length=30)
+    sub_caste = models.CharField(max_length=25)
