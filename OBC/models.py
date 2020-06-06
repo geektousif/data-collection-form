@@ -30,7 +30,7 @@ class Student(models.Model):
     date_of_birth = models.DateField()
     last_class_passed = models.CharField(max_length=4, choices=CLASS_CHOICES)
     year_of_passing = models.IntegerField(('year'), choices=year_dropdown, default=datetime.datetime.now().year-1)
-    current_class = models.CharField(max_length=4, choices=CLASS_CHOICES)
+    present_class = models.CharField(max_length=4, choices=CLASS_CHOICES)
     section = models.CharField(max_length=4, choices=SECTION_CHOICES)
     roll = models.PositiveSmallIntegerField()
     annual_family_income = models.PositiveIntegerField()
