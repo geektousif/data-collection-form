@@ -1,42 +1,14 @@
 {% extends 'base.html' %}
 
-{% block style %}
-  <style>
-      body{
-          background-color: e1e1e1;
-      }
-
-      input[type="radio"] + label span {
-          transition: background .2s,
-            transform .2s;
-      }
-
-      input[type="radio"] + label span:hover,
-      input[type="radio"] + label:hover span{
-        transform: scale(1.2);
-      } 
-
-      input[type="radio"]:checked + label span {
-        background-color: #1F9D55; //bg-green-dark
-        box-shadow: 0px 0px 0px 2px white inset;
-      }
-
-      input[type="radio"]:checked + label{
-        color: #1F9D55; //text-green-dark
-      }
-
-
-  </style>
-{% endblock %}
-
 {% block title %}OBC Form
 {% endblock  %}
 
 {% block content %}
   <div class="bg-gray-100 mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24 shadow-xl mb-24">
-    <form>
+    <form method="POST">
       {% csrf_token %}
-      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-4 mb-4 flex flex-col">
+        <p class="text-xl"><strong>Basic Details</strong></p><hr><br>
         <div class="-mx-3 md:flex mb-6">
           <div class="md:w-full px-3">
             <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.name.id_for_label }}">
@@ -55,7 +27,7 @@
         </div>
         <div class="-mx-3 md:flex mb-6">
           <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="uppercase text-black text-sm font-bold mb-2" for="{{ form.gender.id_for_label }}">
+            <label class="uppercase text-black text-xs font-bold mb-2" for="{{ form.gender.id_for_label }}">
               {{ form.gender.label }}
             </label>
             {{ form.gender }}
@@ -69,94 +41,150 @@
         </div>
         <div class="-mx-3 md:flex mb-6">
           <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
-              Company Name*
+            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.last_class_passed.id_for_label }}">
+              {{ form.last_class_passed.label }}
             </label>
+            {{ form.last_class_passed }}
           </div>
           <div class="md:w-1/2 px-3">
-            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="Software Engineer">
+            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.year_of_passing.id_for_label }}">
+              {{ form.year_of_passing.label }}
+            </label>
+            {{ form.year_of_passing }}
           </div>
         </div>
         <div class="-mx-3 md:flex mb-6">
           <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
-              Company Name*
+            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.present_class.id_for_label }}">
+              {{ form.present_class.label }}
             </label>
-            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Tutsplus">
+            {{ form.present_class }}
           </div>
           <div class="md:w-1/2 px-3">
-            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-              Title*
+            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.section.id_for_label }}">
+              {{ form.section.label }}
             </label>
-            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="Software Engineer">
+            {{ form.section }}
+          </div>
+          <div class="md:w-1/2 px-3">
+            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.roll.id_for_label }}">
+              {{ form.roll.label }}
+            </label>
+            {{ form.roll }}
           </div>
         </div>
         <div class="-mx-3 md:flex mb-6">
-          <div class="md:w-full px-3">
-            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="application-link">
-              Application Link*
-            </label>
-            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="application-link" type="text" placeholder="http://....">
-          </div>
-        </div>
-        <div class="-mx-3 md:flex mb-2">
           <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="location">
-              Location*
+            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.annual_family_income.id_for_label}}">
+              {{ form.annual_family_income.label }}
             </label>
-            <div>
-              <select class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" id="location">
-                <option>Abuja</option>
-                <option>Enugu</option>
-                <option>Lagos</option>
-              </select>
+          {{ form.annual_family_income }}
+        </div>
+        <div class="md:w-1/2 px-3">
+          <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.sub_caste.id_for_label }}">
+            {{ form.sub_caste.label }}
+          </label>
+          {{ form.sub_caste }}
+        </div>
+        </div>
+        </div>
+
+      <div class="bg-white shadow-md rounded px-8 py-6 pb-8 mb-6 flex flex-col">
+        <p class="text-xl"><strong>Contact Details</strong></p><hr><br>
+        <div class="-mx-3 md:flex mb-6">
+          <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.village.id_for_label }}">
+              {{ form.village.label }}
+            </label>
+            {{ form.village }}
+          </div>
+          <div class="md:w-1/2 px-3">
+            <label class="uppercase text-black text-xs font-bold mb-2" for="{{ form.post_office.id_for_label }}">
+              {{ form.post_office.label }}
+            </label>
+            {{ form.post_office }}
+          </div>
+        </div>
+        <div class="-mx-3  md:flex mb-6 flex content-start flex-wrap">
+          <div class="p-2">
+            <span class="uppercase tracking-wide text-black font-bold p-2">District :</span>
+          </div>
+            <div class="md:w-1/2 p-2">
+            <span class="uppercase tracking-wide text-black px-20 p-2 w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"> Purba Bardhaman</span>
+          </div>
+        </div>
+        <div class="-mx-3 md:flex mb-6">
+          <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="uppercase text-black text-xs font-bold mb-2" for="{{ form.sub_division.id_for_label }}">
+              {{ form.sub_division.label }}
+            </label>
+            <div id="selection">
+              {{ form.sub_division }}
             </div>
           </div>
           <div class="md:w-1/2 px-3">
-            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="job-type">
-              Job Type*
+            <label class="uppercase text-black text-xs font-bold mb-2" for="{{ form.block.id_for_label }}">
+              {{ form.block.label }}
             </label>
-            <div>
-              <select class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" id="job-type">
-                <option>Full-Time</option>
-                <option>Part-Time</option>
-                <option>Internship</option>
-              </select>
-            </div>
-          </div>
-          <div class="md:w-1/2 px-3">
-            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="department">
-              Department*
-            </label>
-            <div>
-              <select class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" id="department">
-                <option>Engineering</option>
-                <option>Design</option>
-                <option>Customer Support</option>
-              </select>
+            <div id="selection">
+              {{ form.block }}
             </div>
           </div>
         </div>
-        <div class="-mx-3 md:flex mt-2">
-          <div class="md:w-full px-3">
-            <button class="md:w-full bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full">
-              Button
-            </button>
+        <div class="-mx-3 md:flex mb-6">
+          <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.pincode.id_for_label }}">
+              {{ form.pincode.label }}
+            </label>
+            {{ form.pincode }}
+          </div>
+          <div class="md:w-1/2 px-3">
+            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.mobile_number.id_for_label }}">
+              {{ form.mobile_number.label }}
+            </label>
+            {{ form.mobile_number }}
           </div>
         </div>
       </div>
+
+      <div class="bg-white shadow-md rounded px-8 py-6 pb-8 mb-6 flex flex-col">
+        <p class="text-xl"><strong>Bank Details</strong></p><hr><br>
+        <div class="-mx-3 md:flex mb-6">
+          <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="uppercase text-black text-xs font-bold mb-2" for="{{ form.bank_name.id_for_label }}">
+              {{ form.bank_name.label }}
+            </label>
+            <div id="selection">
+              {{ form.bank_name }}
+            </div>
+          </div>
+          <div class="md:w-1/2 px-3">
+            <label class="uppercase text-black text-xs font-bold mb-2" for="{{ form.branch_name.id_for_label }}">
+              {{ form.branch_name.label }}
+            </label>
+            {{ form.branch_name }}
+          </div>
+        </div>
+        <div class="-mx-3 md:flex mb-6">
+          <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="{{ form.ifsc_code.id_for_label }}">
+              {{ form.ifsc_code.label }}
+            </label>
+            {{ form.ifsc_code }}
+          </div>
+          <div class="md:w-1/2 px-3">
+            <label class="uppercase text-black text-xs font-bold mb-2" for="{{ form.account_no.id_for_label }}">
+              {{ form.account_no.label }}
+            </label>
+            {{ form.account_no }}
+          </div>
+        </div>
+      </div>
+        <div class="-mx-3 flex mt-2 justify-center">
+            <input type="submit" value="Save" class="md:w-1/2 bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full" /> 
+        </div>
     </form>
   </div>
 
-  <script>
-    $(function() {
-      $( ".datepicker" ).datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "1900:2012",
-        // You can put more options here.
   
-      });
-    });
-    </script>
 {% endblock  %}

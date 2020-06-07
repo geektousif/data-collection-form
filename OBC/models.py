@@ -1,11 +1,12 @@
 from django.db import models
 import datetime
 
-year_dropdown = []
-for y in range(2011, (datetime.datetime.now().year + 5)):
-    year_dropdown.append((y, y))
-
 class Student(models.Model):
+
+    year_dropdown = []
+    for y in range((datetime.datetime.now().year -10), (datetime.datetime.now().year+1)):
+        year_dropdown.append((y, y))
+
     GENDER_CHOICES = [
         ('M', 'Male'),
         ('F', 'Female')
@@ -32,15 +33,14 @@ class Student(models.Model):
     year_of_passing = models.IntegerField(('year'), choices=year_dropdown, default=datetime.datetime.now().year-1)
     present_class = models.CharField(max_length=4, choices=CLASS_CHOICES)
     section = models.CharField(max_length=4, choices=SECTION_CHOICES)
-    roll = models.PositiveSmallIntegerField()
-    annual_family_income = models.PositiveIntegerField()
+    roll = models.CharField(max_length=2)
+    annual_family_income = models.CharField(max_length=6)
     village = models.CharField(max_length=25)
     post_office = models.CharField(max_length=25)
     sub_division = models.CharField(max_length=25)
     block = models.CharField(max_length=25)
-    district = models.CharField(max_length=15)
-    pincode = models.PositiveIntegerField()
-    mobile_number = models.PositiveIntegerField()
+    pincode = models.CharField(max_length=6)
+    mobile_number = models.CharField(max_length=10)
     bank_name = models.CharField(max_length=45)
     branch_name = models.CharField(max_length=25)
     ifsc_code = models.CharField(max_length=20)
