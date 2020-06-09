@@ -1,12 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}OBC Form
 {% endblock  %}
 
+{% block style %}
+<style>
+input.error {
+    border: 1px dashed red;
+    font-weight: 300;
+    color: red;
+}
+</style>
+{% endblock  %}
+
 {% block content %}
+<header class="text-gray-700 body-font">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      <span class="ml-3 text-xl">Mondalgram High School</span>
+    </a>
+    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+      <a href="{% url 'obc:home' %}" class="mr-5 hover:text-gray-900"><i class="fa fa-arrow-left mr-4"></i>Go Back to Home Page</a>
+    </nav>
+  </div>
+</header>
   <div class="bg-gray-100 mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24 shadow-xl mb-24">
-    <form method="POST">
+  <div class="container flex flex-wrap w-full flex-col items-center text-center mb-4">
+      <h1 class="text-xl title-font mb-2 text-gray-900"><i>OBC Data Entry Form</i></h1>
+    </div>
+    <form method="POST" id="obcform">
       {% csrf_token %}
+      {{ form.errors }}
       <div class="bg-white shadow-md rounded px-8 pt-6 pb-4 mb-4 flex flex-col">
         <p class="text-xl"><strong>Basic Details</strong></p><hr><br>
         <div class="-mx-3 md:flex mb-6">
@@ -181,10 +209,35 @@
         </div>
       </div>
         <div class="-mx-3 flex mt-2 justify-center">
-            <input type="submit" value="Save" class="md:w-1/2 bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full" /> 
+            <input type="submit" value="Save" class="md:w-1/2 bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full" />
         </div>
     </form>
   </div>
-
-  
+  <script>
+    $(document).ready(function () {
+      $("#obcform").validate({
+        rules:{
+          pincode :{
+            minlength : 6,
+            digits : true
+          },
+          mobile_number :{
+            minlength : 10,
+            digits : true
+          },
+          account_number :{
+            digits : true
+          }
+        },
+        messages: {
+          pincode: "Enter Valid Pincode",
+          mobile_number : "Enter Valid Mobile Number",
+          account_no : "Enter Valid Account Number",
+        }
+      });
+      $("#obcform").submit(function() { 
+        alert("Form submitted Successfully"); 
+    }); 
+    });  
+  </script>
 {% endblock  %}

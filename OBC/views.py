@@ -7,12 +7,7 @@ from .forms import StudentForm
 class IndexView(TemplateView):
     template_name = 'home.html'
 
-def post_new(request):
-    if request.method == "POST":
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            return redirect('home')
-    else:
-        form = StudentForm()
-    return render(request, 'form.html', {'form': form})
+class StudentNew(CreateView):
+    template_name = 'form.html'
+    form_class = StudentForm
+    success_url = reverse_lazy('obc:home')

@@ -1,15 +1,15 @@
 from django.forms import ModelForm
 from .models import Student
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext
 from django.forms import TextInput,NumberInput,RadioSelect, Select
-
+from django.conf import settings
 form_class = 'w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3'
 
 class StudentForm(ModelForm):
     class Meta:
         model = Student
         fields = '__all__'
-        labels = {'sub_caste':_('Sub Caste(Jaat)')}
+        labels = {'sub_caste':gettext('Sub Caste(Jaat)')}
         widgets = { 
             'name': TextInput(attrs={
                 'class': form_class,
