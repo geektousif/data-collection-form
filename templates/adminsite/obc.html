@@ -9,6 +9,11 @@ OBC
                     <p class="text-xl pb-3 flex items-center">
                         <i class="fas fa-list mr-3"></i> Table Example
                     </p>
+                    <form method="GET">
+                        {% csrf_token %}
+                        {{ filter.form }}
+                        <button type="submit">Search</button>
+                    </form>
                     <div class="bg-white">
                         <table class="text-left w-full border-collapse"> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
                             <thead class="bg-gray-800 text-white">
@@ -20,7 +25,7 @@ OBC
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for obc in obc_data %}
+                                {% for obc in filter.qs %}
                                 <tr class="hover:bg-grey-lighter">
                                     <td class="py-4 px-6 border-b border-grey-light">{{ obc.name }}</td>
                                     <td class="py-4 px-6 border-b border-grey-light">{{ obc.present_class }}</td>

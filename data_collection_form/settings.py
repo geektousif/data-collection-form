@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'OBC',
-    'adminsite'
+    'adminsite',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
